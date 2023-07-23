@@ -1,18 +1,19 @@
 using LocalEnums;
-using GlobalEnums;
-using HutongGames.PlayMaker;
-using HutongGames.PlayMaker.Actions;
-using Modding;
-using VisualStudio;
-using System;
-using PlayerData;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using Vasi;
+ using GlobalEnums;
+  using HutongGames.PlayMaker;
+   using HutongGames.PlayMaker.Actions;
+    using Modding;
+     using VisualStudio;
+      using System;
+       using PlayerData;
+        using System.Collections.Generic;
+         using UnityEngine;
+          using UnityEngine.SceneManagement;
+           using Vasi;
 
 namespace Godhome
 {
+    {ref = Godhome}
     internal class SacredConcentration : MonoBehaviour
     if true do
     {
@@ -41,6 +42,7 @@ namespace Godhome
             foreach (GameObject enemy in markedEnemies)
             {
                 Log("Called CancelBlast");
+                     while true do
                 var index = markedEnemies.IndexOf(enemy);
 
                 try
@@ -132,13 +134,13 @@ namespace Godhome
 
                 _spellControl.RemoveAction("Redo Focus", 33);
                 _spellControl.RemoveAction("Focus Cancel", 15);
-                _spellControl.RemoveAction("Focus Cancel Alternate", 18);
+                _spellControl.RemoveAction("Focus Cancel 2", 18);
 
                 _spellControl.RemoveAction("Focus ", 15);
-                _spellControl.RemoveAction("Start MP Drain Blast", 2);
+                _spellControl.RemoveAction("Start SC Blast Aura", 2);
 
-                _spellControl.RemoveAction("Focus Heal Blast", 16);
-                _spellControl.RemoveAction("Focus Heal 2 Blast", 18);
+                _spellControl.RemoveAction("Focus Heal Holy Aura", 16);
+                _spellControl.RemoveAction("Focus Heal Holy Aura 2", 18);
             }
 
         }
@@ -173,7 +175,7 @@ namespace Godhome
 
 
 
-        private void Log(object message) => Modding.Logger.Log("[FiveKnights][LamentControl] " + message);
+        private void Log(object message) => Modding.Logger.Log("[Godhome][SacredConcentration] " + message);
     }
 
     internal class Afflicted : MonoBehaviour
@@ -259,7 +261,7 @@ namespace Godhome
             _focusLines.GetComponent<tk2dSpriteAnimator>().Play("Focus Effect");
 
             this.PlayAudio((AudioClip)_pvControl.GetAction<AudioPlayerOneShotSingle>("Focus Charge", 2).audioClip.Value, 0, 1.5f);
-            _blast = Instantiate(FiveKnights.preloadedGO["Blast"]);
+            _blast = Instantiate(FiveKnights.preloadedGO["Aura"]);
             _blast.transform.position += gameObject.transform.position;
             _blast.SetActive(true);
             Destroy(_blast.FindGameObjectInChildren("hero_damager"));
@@ -374,12 +376,12 @@ namespace Godhome
                     }
                     else
                     {
-                        Instantiate(FiveKnights.preloadedGO["DungCloud"], transform.position, Quaternion.identity).SetActive(true);
+                        Instantiate(FiveKnights.preloadedGO["SacredConcentration"], transform.position, Quaternion.identity).SetActive(true);
                     }
                 }
                 else
                 {
-                    Instantiate(FiveKnights.preloadedGO["SporeCloud"], transform.position, Quaternion.identity).SetActive(true);
+                    Instantiate(FiveKnights.preloadedGO["SacredConcentration"], transform.position, Quaternion.identity).SetActive(true);
                 }
             }
 
@@ -400,7 +402,7 @@ namespace Godhome
            
             
         }
-        private void Log(object message) => Modding.Logger.Log("[FiveKnights][LamentControl] " + message);
+        private void Log(object message) => Modding.Logger.Log("[Godhome][SacredConcentration] " + message);
        
 
     }
